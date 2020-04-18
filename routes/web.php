@@ -11,14 +11,22 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+if (User::where("role", "=", "admin")->exists()) {
+    Auth::routes([
+        'register' => false
+    ]);
+} else {
+    Auth::routes();
+}
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/blog', 'BlogsController@index')->name('blog');
+Route::get('/blog/create', 'BlogsController@create')->name('blog.create');
+Route::post('/blog/store', 'BlogsController@store')->name('blog.store');
