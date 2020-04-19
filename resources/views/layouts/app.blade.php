@@ -49,13 +49,12 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="{{ url('/') }}">Inicio</a></li>
-                                        <li><a href="#">Cursos <i class="ti-angle-down"></i></a>
+                                        <li><a href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="course_details.html">Programación con Python</a></li>
+                                                <li><a href="{{ url('/cursos') }}">Todos</a></li>
                                                 <li><a href="elements.html">Blog con Laravel</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="about.html">Nosotros</a></li>
                                         <li><a href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/blog') }}">Todos</a></li>
@@ -63,7 +62,8 @@
                                                 <li><a href="single-blog.html">IOT</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contacto</a></li>
+                                        <li><a href="{{ url('/nosotros') }}">Nosotros</a></li>
+                                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
                                         @guest
                                         <li>
                                             <a href="{{ route('login') }}" class="login">
@@ -119,7 +119,7 @@
 
     <!-- footer -->
     <footer class="footer footer_bg_1">
-        <div class="footer_top">
+        <div class="footer_top" style="padding: 70px 0 20px 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4 col-md-6 col-lg-4">

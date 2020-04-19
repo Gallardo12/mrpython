@@ -51,13 +51,12 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="{{ url('/') }}">Inicio</a></li>
-                                        <li><a href="#">Cursos <i class="ti-angle-down"></i></a>
+                                        <li><a href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="course_details.html">Programación con Python</a></li>
+                                                <li><a href="{{ url('/cursos') }}">Todos</a></li>
                                                 <li><a href="elements.html">Blog con Laravel</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="about.html">Nosotros</a></li>
                                         <li><a href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/blog') }}">Todos</a></li>
@@ -65,7 +64,8 @@
                                                 <li><a href="single-blog.html">IOT</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contacto</a></li>
+                                        <li><a href="{{ url('/nosotros') }}">Nosotros</a></li>
+                                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
                                         @guest
                                         <li>
                                             <a href="{{ route('login') }}" class="login">
@@ -142,7 +142,7 @@
     <!-- slider_area_end -->
 
     <!-- about_area_start -->
-    <div class="about_area">
+    <div class="about_area" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-6">
@@ -189,7 +189,7 @@
     <!-- about_area_end -->
 
     <!-- popular_courses_start -->
-    <div class="popular_courses">
+    <div class="popular_courses" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -199,44 +199,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="course_nav">
-                        <nav>
-                            <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Courses</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Photoshop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">UI/UX</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="design-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design" aria-selected="false">Web Design</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab" data-toggle="tab" href="#Web" role="tab" aria-controls="design" aria-selected="false">Web dev</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab1" data-toggle="tab" href="#Web1" role="tab" aria-controls="design" aria-selected="false">Wordpress</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web11" role="tab" aria-controls="design" aria-selected="false">Adobe XD</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab8" data-toggle="tab" href="#Adobe-XD8" role="tab" aria-controls="design" aria-selected="false">Sketch App</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab9" data-toggle="tab" href="#Adobe-XD9" role="tab" aria-controls="design" aria-selected="false">Illustrator</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
         </div>
         <div class="all_courses">
             <div class="container">
@@ -1756,7 +1718,7 @@
     <!-- testimonial_area_end -->
 
     <!-- our_courses_start -->
-    <div class="our_courses">
+    <div class="our_courses" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1841,7 +1803,7 @@
     <!-- subscribe_newsletter_end -->
 
     <!-- our_latest_blog_start -->
-    <div class="our_latest_blog">
+    <div class="our_latest_blog" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1851,6 +1813,7 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($blogs as $blog)
                 <div class="col-xl-4 col-md-4">
                     <div class="single_latest_blog">
                         <div class="thumb">
@@ -1858,53 +1821,18 @@
                         </div>
                         <div class="content_blog">
                             <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
+                                <p>{{ $blog->created_at->diffforhumans() }} en <a href="#">Programación</a></p>
                             </div>
                             <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
+                                <h3><a href="#">{{ $blog->title }}</a></h3>
                             </div>
                             <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
+                                {{ $blog->body }}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_latest_blog">
-                        <div class="thumb">
-                            <img src="img/latest_blog/2.png" alt="">
-                        </div>
-                        <div class="content_blog">
-                            <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
-                            </div>
-                            <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
-                            </div>
-                            <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_latest_blog">
-                        <div class="thumb">
-                            <img src="img/latest_blog/3.png" alt="">
-                        </div>
-                        <div class="content_blog">
-                            <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
-                            </div>
-                            <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
-                            </div>
-                            <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -1913,7 +1841,7 @@
 
     <!-- footer -->
     <footer class="footer footer_bg_1">
-        <div class="footer_top">
+        <div class="footer_top" style="padding: 70px 0 20px 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4 col-md-6 col-lg-4">
