@@ -36,7 +36,13 @@ class BlogsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $input = $request->all();
+        $blog = Blog::create($input);
+        // $blog = new Blog();
+        // $blog->title = $request->title;
+        // $blog->body = $request->body;
+        // $blog->save();
+        return redirect('/blog');
     }
 
     /**
@@ -45,9 +51,11 @@ class BlogsController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($id)
     {
-        //
+        $blogs = Blog::all();
+        $blog = Blog::findOrFail($id);
+        return view('blogs.show', compact('blog', 'blogs'));
     }
 
     /**

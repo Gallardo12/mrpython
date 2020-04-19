@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('blog')
+class="active"
+@endsection
+
 @section('content')
 
 <!-- bradcam_area_start -->
@@ -16,7 +20,7 @@
                     @foreach($blogs as $blog)
                     <article class="blog_item">
                         <div class="blog_item_img">
-                            <img class="card-img rounded-0" src="img/blog/single_blog_1.png" alt="">
+                            <img class="card-img rounded-0" src="{{ asset('img/blog/single_blog_1.png') }}" alt="">
                             <a href="#" class="blog_item_date">
                                 <h3>{{ $blog->created_at->format('d') }}</h3>
                                 <p>{{ $blog->created_at->format('M') }}</p>
@@ -119,7 +123,7 @@
                         <h3 class="widget_title">Publicaciones Recientes</h3>
                         @foreach($blogs as $blog)
                         <div class="media post_item">
-                            <img src="img/post/post_1.png" alt="post">
+                            <img src="{{ asset('img/post/post_1.png') }}" alt="post">
                             <div class="media-body">
                                 <a href="single-blog.html">
                                     <h3>{{ $blog->title }}</h3>
@@ -165,32 +169,32 @@
                         <ul class="instagram_row flex-wrap">
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_5.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_5.png') }}" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_6.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_6.png') }}" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_7.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_7.png') }}" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_8.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_8.png') }}" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_9.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_9.png') }}" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img class="img-fluid" src="img/post/post_10.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('img/post/post_10.png') }}" alt="">
                                 </a>
                             </li>
                         </ul>

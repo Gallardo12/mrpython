@@ -29,5 +29,6 @@ if (User::where("role", "=", "admin")->exists()) {
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/blog', 'BlogsController@index')->name('blog');
-Route::get('/blog/create', 'BlogsController@create')->name('blog.create');
-Route::post('/blog/store', 'BlogsController@store')->name('blog.store');
+Route::get('/blog/nuevo', 'BlogsController@create')->name('blog.create');
+Route::post('/blog/guardar', 'BlogsController@store')->name('blog.store');
+Route::get('/blog/{id}', 'BlogsController@show')->name('blog.show');

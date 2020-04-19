@@ -1,3 +1,7 @@
+@section('home')
+class="active"
+@endsection
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -50,37 +54,37 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="{{ url('/') }}">Inicio</a></li>
-                                        <li><a href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('home') href="{{ url('/') }}">Inicio</a></li>
+                                        <li><a @yield('courses') href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/cursos') }}">Todos</a></li>
                                                 <li><a href="elements.html">Blog con Laravel</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('blog') href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/blog') }}">Todos</a></li>
                                                 <li><a href="single-blog.html">Desarrollo Web</a></li>
                                                 <li><a href="single-blog.html">IOT</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('/nosotros') }}">Nosotros</a></li>
-                                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+                                        <li><a @yield('about') href="{{ url('/nosotros') }}">Nosotros</a></li>
+                                        <li><a @yield('contact') href="{{ url('/contacto') }}">Contacto</a></li>
                                         @guest
                                         <li>
-                                            <a href="{{ route('login') }}" class="login">
+                                            <a @yield('admin') href="{{ route('login') }}" class="login">
                                                 <span>Admin</span>
                                             </a>
                                         </li>
                                         @if (Route::has('register'))
                                         <li>
-                                            <a href="{{ route('register') }}" class="login">
+                                            <a @yield('admin') href="{{ route('register') }}" class="login">
                                                 <span>Registrarse</span>
                                             </a>
                                         </li>
                                         @endif
                                         @else
-                                        <li><a href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('admin') href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li>
                                                     <a class="login" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -124,7 +128,7 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-xl-6 col-md-6">
                         <div class="illastrator_png">
-                            <img src="img/banner/edu_ilastration.png" alt="">
+                            <img src="{{ asset('img/banner/edu_ilastration.png') }}" alt="">
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">
@@ -209,7 +213,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -235,7 +239,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -260,7 +264,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -286,7 +290,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -311,7 +315,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -336,7 +340,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -371,7 +375,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -397,7 +401,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -422,7 +426,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -448,7 +452,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -473,7 +477,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -498,7 +502,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -533,7 +537,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -559,7 +563,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -584,7 +588,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -610,7 +614,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -635,7 +639,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -660,7 +664,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -695,7 +699,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -721,7 +725,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -746,7 +750,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -772,7 +776,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -797,7 +801,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -822,7 +826,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -857,7 +861,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -883,7 +887,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -908,7 +912,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -934,7 +938,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -959,7 +963,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -984,7 +988,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1019,7 +1023,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1045,7 +1049,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1070,7 +1074,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1096,7 +1100,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1121,7 +1125,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -1146,7 +1150,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1181,7 +1185,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1207,7 +1211,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1232,7 +1236,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1258,7 +1262,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1283,7 +1287,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -1308,7 +1312,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1343,7 +1347,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1369,7 +1373,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1394,7 +1398,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1420,7 +1424,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1445,7 +1449,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -1470,7 +1474,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1505,7 +1509,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/1.png" alt="">
+                                            <img src="{{ asset('img/courses/1.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1531,7 +1535,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/2.png" alt="">
+                                            <img src="{{ asset('img/courses/2.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1556,7 +1560,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/3.png" alt="">
+                                            <img src="{{ asset('img/courses/3.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1582,7 +1586,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/4.png" alt="">
+                                            <img src="{{ asset('img/courses/4.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1607,7 +1611,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
-                                        <img src="img/courses/5.png" alt="">
+                                        <img src="{{ asset('img/courses/5.png') }}" alt="">
                                     </div>
                                     <div class="courses_info">
                                         <span>UI/UX</span>
@@ -1632,7 +1636,7 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/courses/6.png" alt="">
+                                            <img src="{{ asset('img/courses/6.png') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
@@ -1677,7 +1681,7 @@
                         <div class="col-xl-12">
                             <div class="testmonial_text text-center">
                                 <div class="author_img">
-                                    <img src="img/testmonial/author_img.png" alt="">
+                                    <img src="{{ asset('img/testmonial/author_img.png') }}" alt="">
                                 </div>
                                 <p>
                                     "Working in conjunction with humanitarian aid <br> agencies we have supported
@@ -1698,7 +1702,7 @@
                         <div class="col-xl-12">
                             <div class="testmonial_text text-center">
                                 <div class="author_img">
-                                    <img src="img/testmonial/author_img.png" alt="">
+                                    <img src="{{ asset('img/testmonial/author_img.png') }}" alt="">
                                 </div>
                                 <p>
                                     "Working in conjunction with humanitarian aid <br> agencies we have supported
@@ -1817,7 +1821,7 @@
                 <div class="col-xl-4 col-md-4">
                     <div class="single_latest_blog">
                         <div class="thumb">
-                            <img src="img/latest_blog/1.png" alt="">
+                            <img src="{{ asset('img/latest_blog/1.png') }}" alt="">
                         </div>
                         <div class="content_blog">
                             <div class="date">

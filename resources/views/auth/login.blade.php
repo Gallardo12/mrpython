@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('admin')
+class="active"
+@endsection
+
 @section('content')
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay2" style="padding: 140px 0 60px 0;">

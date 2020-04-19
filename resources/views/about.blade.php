@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('about')
+class="active"
+@endsection
+
 @section('content')
 
 <!-- bradcam_area_start -->

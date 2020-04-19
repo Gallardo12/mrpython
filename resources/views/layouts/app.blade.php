@@ -48,37 +48,37 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="{{ url('/') }}">Inicio</a></li>
-                                        <li><a href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('home') href="{{ url('/') }}">Inicio</a></li>
+                                        <li><a @yield('courses') href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/cursos') }}">Todos</a></li>
                                                 <li><a href="elements.html">Blog con Laravel</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('blog') href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{{ url('/blog') }}">Todos</a></li>
                                                 <li><a href="single-blog.html">Desarrollo Web</a></li>
                                                 <li><a href="single-blog.html">IOT</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('/nosotros') }}">Nosotros</a></li>
-                                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+                                        <li><a @yield('about') href="{{ url('/nosotros') }}">Nosotros</a></li>
+                                        <li><a @yield('contact') href="{{ url('/contacto') }}">Contacto</a></li>
                                         @guest
                                         <li>
-                                            <a href="{{ route('login') }}" class="login">
+                                            <a @yield('admin') href="{{ route('login') }}" class="login">
                                                 <span>Admin</span>
                                             </a>
                                         </li>
                                         @if (Route::has('register'))
                                         <li>
-                                            <a href="{{ route('register') }}" class="login">
+                                            <a @yield('admin') href="{{ route('register') }}" class="login">
                                                 <span>Registrarse</span>
                                             </a>
                                         </li>
                                         @endif
                                         @else
-                                        <li><a href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
+                                        <li><a @yield('admin') href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li>
                                                     <a class="login" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
