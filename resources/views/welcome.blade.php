@@ -15,17 +15,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/slicknav.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <script src="https://kit.fontawesome.com/2319676d2d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -40,7 +41,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a style="color: white; font-family: 'Roboto', sans-serif; font-size: 25px;" href="{{ url('/') }}">
-                                    <img height="70px" src="img/site/logo_transparent.png" alt="">
+                                    <img height="70px" src="{{ asset('img/site/logo_transparent.png') }}" alt="">
                                     Mr. Python
                                 </a>
                             </div>
@@ -50,35 +51,58 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="{{ url('/') }}">Inicio</a></li>
-                                        <li><a href="#">Cursos <i class="ti-angle-down"></i></a>
+                                        <li><a href="{{ url('/cursos') }}">Cursos <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="course_details.html">Programación con Python</a></li>
+                                                <li><a href="{{ url('/cursos') }}">Todos</a></li>
                                                 <li><a href="elements.html">Blog con Laravel</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="about.html">Nosotros</a></li>
-                                        <li><a href="#">Blog<i class="ti-angle-down"></i></a>
+                                        <li><a href="{{ url('/blog') }}">Blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">Programación</a></li>
+                                                <li><a href="{{ url('/blog') }}">Todos</a></li>
                                                 <li><a href="single-blog.html">Desarrollo Web</a></li>
                                                 <li><a href="single-blog.html">IOT</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contacto</a></li>
+                                        <li><a href="{{ url('/nosotros') }}">Nosotros</a></li>
+                                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+                                        @guest
+                                        <li>
+                                            <a href="{{ route('login') }}" class="login">
+                                                <span>Admin</span>
+                                            </a>
+                                        </li>
+                                        @if (Route::has('register'))
+                                        <li>
+                                            <a href="{{ route('register') }}" class="login">
+                                                <span>Registrarse</span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                        @else
+                                        <li><a href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a class="login" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                        Salir
+                                                    </a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        @endguest
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="log_chat_area d-flex align-items-center">
-                                <a href="#test-form" class="login popup-with-form">
-                                    <i class="flaticon-user"></i>
-                                    <span>Ingresar</span>
-                                </a>
                                 <div class="live_chat_btn">
                                     <a class="boxed_btn_orange" href="#">
                                         <i class="fa fa-phone"></i>
-                                        <span>+52 618 839 3111</span>
+                                        <span>Contáctanos</span>
                                     </a>
                                 </div>
                             </div>
@@ -118,7 +142,7 @@
     <!-- slider_area_end -->
 
     <!-- about_area_start -->
-    <div class="about_area">
+    <div class="about_area" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-6">
@@ -165,7 +189,7 @@
     <!-- about_area_end -->
 
     <!-- popular_courses_start -->
-    <div class="popular_courses">
+    <div class="popular_courses" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -175,44 +199,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="course_nav">
-                        <nav>
-                            <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Courses</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Photoshop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">UI/UX</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="design-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design" aria-selected="false">Web Design</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab" data-toggle="tab" href="#Web" role="tab" aria-controls="design" aria-selected="false">Web dev</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab1" data-toggle="tab" href="#Web1" role="tab" aria-controls="design" aria-selected="false">Wordpress</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web11" role="tab" aria-controls="design" aria-selected="false">Adobe XD</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab8" data-toggle="tab" href="#Adobe-XD8" role="tab" aria-controls="design" aria-selected="false">Sketch App</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab9" data-toggle="tab" href="#Adobe-XD9" role="tab" aria-controls="design" aria-selected="false">Illustrator</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
         </div>
         <div class="all_courses">
             <div class="container">
@@ -1732,7 +1718,7 @@
     <!-- testimonial_area_end -->
 
     <!-- our_courses_start -->
-    <div class="our_courses">
+    <div class="our_courses" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1817,7 +1803,7 @@
     <!-- subscribe_newsletter_end -->
 
     <!-- our_latest_blog_start -->
-    <div class="our_latest_blog">
+    <div class="our_latest_blog" style="padding: 100px 0 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1827,6 +1813,7 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($blogs as $blog)
                 <div class="col-xl-4 col-md-4">
                     <div class="single_latest_blog">
                         <div class="thumb">
@@ -1834,53 +1821,18 @@
                         </div>
                         <div class="content_blog">
                             <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
+                                <p>{{ $blog->created_at->diffforhumans() }} en <a href="#">Programación</a></p>
                             </div>
                             <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
+                                <h3><a href="#">{{ $blog->title }}</a></h3>
                             </div>
                             <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
+                                {{ $blog->body }}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_latest_blog">
-                        <div class="thumb">
-                            <img src="img/latest_blog/2.png" alt="">
-                        </div>
-                        <div class="content_blog">
-                            <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
-                            </div>
-                            <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
-                            </div>
-                            <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_latest_blog">
-                        <div class="thumb">
-                            <img src="img/latest_blog/3.png" alt="">
-                        </div>
-                        <div class="content_blog">
-                            <div class="date">
-                                <p>12 Jun, 2019 in <a href="#">Design tips</a></p>
-                            </div>
-                            <div class="blog_meta">
-                                <h3><a href="#">Commitment to dedicated Support</a></h3>
-                            </div>
-                            <p class="blog_text">
-                                Firmament morning sixth subdue darkness creeping gathered divide.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -1889,14 +1841,14 @@
 
     <!-- footer -->
     <footer class="footer footer_bg_1">
-        <div class="footer_top">
+        <div class="footer_top" style="padding: 70px 0 20px 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a style="color: white; font-family: 'Roboto', sans-serif; font-size: 25px;" href="{{ url('/') }}">
-                                    <img height=70px" src="img/site/logo_transparent.png" alt="">
+                                    <img height=70px" src="{{ asset('img/site/logo_transparent.png') }}" alt="">
                                     Mr. Python
                                 </a>
                             </div>
@@ -1993,114 +1945,34 @@
     </footer>
     <!-- footer -->
 
-
-    <!-- form itself end-->
-    <form id="test-form" class="white-popup-block mfp-hide">
-        <div class="popup_box ">
-            <div class="popup_inner">
-                <div class="logo text-center">
-                    <a style="color: white; font-family: 'Roboto', sans-serif; font-size: 25px;" href="{{ url('/') }}">
-                        <img height=70px" src="img/site/logo_transparent.png" alt="">
-                        Mr. Python
-                    </a>
-                </div>
-                <h3>Ingresar</h3>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12">
-                            <input type="email" placeholder="Ingresa tu correo electrónico">
-                        </div>
-                        <div class="col-xl-12 col-md-12">
-                            <input type="password" placeholder="Contraseña">
-                        </div>
-                        <div class="col-xl-12">
-                            <button type="submit" class="boxed_btn_orange">Ingresar</button>
-                        </div>
-                    </div>
-                </form>
-                <!--p class="doen_have_acc">Don’t have an account? <a class="dont-hav-acc" href="#test-form2">Sign Up</a>
-                </p-->
-            </div>
-        </div>
-    </form>
-    <!-- form itself end -->
-
-    <!-- form itself end-->
-    <form id="test-form2" class="white-popup-block mfp-hide">
-        <div class="popup_box ">
-            <div class="popup_inner">
-                <div class="logo text-center">
-                    <a href="#">
-                        <img src="img/form-logo.png" alt="">
-                    </a>
-                </div>
-                <h3>Resistration</h3>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12">
-                            <input type="email" placeholder="Enter email">
-                        </div>
-                        <div class="col-xl-12 col-md-12">
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="col-xl-12 col-md-12">
-                            <input type="Password" placeholder="Confirm password">
-                        </div>
-                        <div class="col-xl-12">
-                            <button type="submit" class="boxed_btn_orange">Sign Up</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </form>
-    <!-- form itself end -->
-
-
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
+    <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('js/ajax-form.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('js/scrollIt.js') }}"></script>
+    <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plugins.js') }}"></script>
+    <script src="{{ asset('js/gijgo.min.js') }}"></script>
 
     <!--contact js-->
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
+    <script src="{{ asset('js/contact.js') }}"></script>
+    <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/mail-script.js') }}"></script>
 
-    <script src="js/main.js"></script>
-
-    <!--div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/home') }}">Home</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-    </div-->
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

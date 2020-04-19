@@ -11,14 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\User;
 
-Auth::routes();
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
+Route::get('/nosotros', 'WelcomeController@about')->name('about');
+Route::get('/contacto', 'WelcomeController@contact')->name('contact');
+Route::get('/cursos', 'WelcomeController@courses')->name('courses');
 
-Route::get('/home', 'HomeController@index')->name('home');
+if (User::where("role", "=", "admin")->exists()) {
+    Auth::routes([
+        'register' => false
+    ]);
+} else {
+    Auth::routes();
+}
 
-Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/blog', 'BlogsController@index')->name('blog');
+Route::get('/blog/create', 'BlogsController@create')->name('blog.create');
+Route::post('/blog/store', 'BlogsController@store')->name('blog.store');
