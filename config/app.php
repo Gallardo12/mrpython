@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Mexico_City',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY','cztixut8kcdavmwkbi5herd1b6uzqlzi'),
+    'key' => env('APP_KEY', 'cztixut8kcdavmwkbi5herd1b6uzqlzi'),
 
     'cipher' => 'AES-256-CBC',
 
