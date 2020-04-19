@@ -18,15 +18,13 @@ Route::get('/nosotros', 'WelcomeController@about')->name('about');
 Route::get('/contacto', 'WelcomeController@contact')->name('contact');
 Route::get('/cursos', 'WelcomeController@courses')->name('courses');
 
-/*if (User::where("role", "=", "admin")->exists()) {
+if (User::where("role", "=", "admin")->exists()) {
     Auth::routes([
         'register' => false
     ]);
 } else {
     Auth::routes();
-}*/
-
-Auth::routes();
+}
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
